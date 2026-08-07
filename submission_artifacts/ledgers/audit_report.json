@@ -1,0 +1,22 @@
+{
+  "batches": 8,
+  "loss_tokens_per_lane": {
+    "agentic": 203,
+    "code": 120,
+    "general_web": 1600,
+    "indic": 640,
+    "reasoning": 282
+  },
+  "shards_trained": {
+    "v5_agentic_shard_000": 112,
+    "v5_agentic_shard_001": 91,
+    "v5_code_shard_001": 120,
+    "v5_general_web_shard_000": 1600,
+    "v5_indic_shard_000": 640,
+    "v5_reasoning_shard_000": 282
+  },
+  "step_range": [
+    4,
+    11
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "capability_lane": "indic",
+  "cleaning_pipeline_hash": "clean_ae15613d7141",
+  "contains_canary": false,
+  "content_hash": "sha256_b58fd876504bee10",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "a18146da8fbee84aa7d802ae80dd9dbf126beffb",
+    "93dc21d8714bdcf66fc40087d08f744206616cbb",
+    "4c08f7678d80f288c2a162c5bb0d81143aa03667",
+    "1c3a098c68fbb367d29d95082063f9bdb960dbdd",
+    "6c4447b79025bd86d8d177419de89292",
+    "f13c3fd2684b8fce15259729bdeeb1e162bf0361",
+    "105dddf9edade9122db547604b23b9175d0e3f47",
+    "22519ee1595218ceb513b34086498ba32fb38f28e20dff050b03fbb2eed92906",
+    "4c20258bd6c5d8480332bbb4d090ec6690b7752c",
+    "0861e6f69a345afac187b08e0888650d",
+    "e4ac16ce14324ae9fecd47b5ea7c0786"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_b1d451f3eb260324",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_indic_shard_097",
+  "token_count": 4136,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

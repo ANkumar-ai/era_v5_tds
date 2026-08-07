@@ -1,0 +1,19 @@
+{
+  "capability_lane": "agentic",
+  "cleaning_pipeline_hash": "clean_57e232501c01",
+  "contains_canary": false,
+  "content_hash": "sha256_b59c199df8ed320a",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "agent_000"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_fed54b7fa16da3d7",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_agentic_shard_000",
+  "token_count": 23,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

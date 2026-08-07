@@ -1,0 +1,132 @@
+
+========================================================================
+== ERA V5 · TRAINING DATA EXECUTION SYSTEM
+========================================================================
+[   0.000s] seed=20250804  (single global seed => full reproducibility)
+
+========================================================================
+== TOKENIZER  (frozen, hashed — gives token IDs meaning)
+========================================================================
+[   0.000s] indic-lane data: 10000 rows from pinned cache; shard pool ≤ 1500 docs; seq_len=64; steps=24
+[PASS] tokenizer_hash_verified :: tok_f17abb75fa3d reproduces across builds (vocab=40000)
+[PASS] tokenizer_hash_changes :: hash changes iff the vocabulary changes
+
+========================================================================
+== SHARDS + MANIFESTS  (immutable tokenized objects)
+========================================================================
+[   2.934s] shards created: 113 immutable tokenized shards, 445674 tokens, lanes=['agentic', 'code', 'eval_holdout', 'general_web', 'indic', 'math_science', 'reasoning']
+[PASS] manifests_written :: 113 shards; 445674 tokens; lanes=['agentic', 'code', 'eval_holdout', 'general_web', 'indic', 'math_science', 'reasoning']
+[   3.118s] manifests validated: 113/113 content + tokenizer hashes match
+[PASS] manifests_validated :: every manifest's content_hash recomputes from its tokens; tokenizer_hash matches
+[PASS] shard_immutable_hash :: edit -> new hash sha256_d115d7a494058352 (parent mf_5ba019598b92acbd)
+
+========================================================================
+== EVAL FIREWALL  (never-train bouncer)
+========================================================================
+[PASS] eval_shard_blocked :: v5_eval_holdout_shard_000 (never_train=true, eval_overlap=test_material, canary_present)
+[   3.119s] 1 shard(s) blocked, 112 admitted to training
+[PASS] no_canary_in_loss_batches :: no canary subsequence in any admitted (loss-bearing) shard
+
+========================================================================
+== PACKING · MASKS · POSITION IDS
+========================================================================
+[PASS] attention_no_cross_doc :: tokens in different documents cannot attend across the boundary
+[PASS] position_ids_reset :: position ids reset to 0 at every document boundary
+[PASS] loss_mask_response_only :: agentic loss mask covers only the 14-token response, not the prompt
+
+========================================================================
+== MIXTURE SCHEDULE  (curriculum, lane weights, protected floors)
+========================================================================
+[   3.293s] mixture compiled: 2 curriculum stages; lanes=['agentic', 'code', 'general_web', 'indic', 'math_science', 'reasoning']; floors={'indic': 0.08, 'agentic': 0.03, 'reasoning': 0.05}
+[PASS] mixture_compiled :: 2 stages; warnings=0
+[   3.673s] batches packed: 7079 packed sequences across 6 lane×length queues; packing_utilisation=0.984
+
+========================================================================
+== CANONICAL RUN  (train + consumption/learning ledgers + checkpoints)
+========================================================================
+[   3.673s] model cold-start loss = ln(V) = 10.5966 (vocab=40000)
+[PASS] checkpoint_saved :: main@step0 -> ckpt_main_step000000.json (ledger_offset=0)
+[   3.681s] step 00 phase=mid    accepted=8 batch=sha256_bab51ef1d1d0f…
+[PASS] checkpoint_saved :: main@step4 -> ckpt_main_step000004.json (ledger_offset=4)
+[   3.718s] step 04 phase=anneal accepted=8 batch=sha256_9cf0a73720351…
+[PASS] checkpoint_saved :: main@step8 -> ckpt_main_step000008.json (ledger_offset=8)
+[   3.759s] step 08 phase=anneal accepted=8 batch=sha256_b881d0c184244…
+[PASS] checkpoint_saved :: main@step12 -> ckpt_main_step000012.json (ledger_offset=12)
+[   3.803s] step 12 phase=anneal accepted=8 batch=sha256_10c1c8a7201f2…
+[PASS] checkpoint_saved :: main@step16 -> ckpt_main_step000016.json (ledger_offset=16)
+[   3.863s] step 16 phase=anneal accepted=8 batch=sha256_fb035a9f78bc1…
+[PASS] checkpoint_saved :: main@step20 -> ckpt_main_step000020.json (ledger_offset=20)
+[   3.917s] step 20 phase=anneal accepted=8 batch=sha256_dbe00f4706681…
+[   3.936s] step 23 phase=anneal accepted=8 batch=sha256_d525b80752592…
+[PASS] checkpoint_saved :: main@step24 -> ckpt_main_step000024.json (ledger_offset=24)
+[   3.967s] canonical run complete: 24 steps, 8869 loss-bearing tokens trained
+[PASS] consumption_recorded :: 24 consumption rows (one per step)
+[PASS] learning_linked_to_source :: every learning row's per-shard loss links to a real shard
+[PASS] opus_trail_recorded :: 605 OPUS decisions; kinds=['accept', 'defer', 'reject']
+[PASS] opus_override_fired :: protected-floor override forced a scarce lane past the selector
+[PASS] protected_floor_respected :: realized shares {'indic': 0.223, 'agentic': 0.053, 'reasoning': 0.101} vs floors {'indic': 0.08, 'agentic': 0.03, 'reasoning': 0.05} (override active)
+
+========================================================================
+== CRASH @ step 18  ->  RESUME from checkpoint
+========================================================================
+[   3.980s] crash simulated at step 18; latest checkpoint = step 16
+[   3.985s] ledgers rolled back to offset 16 (discarded rows written after the checkpoint)
+[PASS] resume_next_batch_matched :: step 16: regenerated sha256_fb035a9f78bc157c1… == original sha256_fb035a9f78bc157c1…
+[PASS] resume_no_skip_no_repeat :: 24 consumption rows, steps contiguous 0..23
+[   4.042s] run resumed from step 16 and completed to step 23
+
+========================================================================
+== REPLAY interval [5,9]  (must reproduce identical hashes)
+========================================================================
+[   4.044s] restored checkpoint step 4; fast-forwarding 4..4 (no record)
+[PASS] replay_hash_matched :: steps 5..9: batch hashes AND token spans identical to original
+[   4.075s] historical stream replayed for steps 5..9 (hashes matched)
+
+========================================================================
+== FORK from checkpoint step 8  (new branch, changed mixture)
+========================================================================
+[   4.121s] branch forked: 'fork-reasoning' from step 8 (parent=ckpt_main_step000008.json)
+[PASS] fork_diverged :: branch 'fork-reasoning' from step 8 (parent=ckpt_main_step000008.json); stream diverges from main after divergence point
+
+========================================================================
+== AUDIT: reconstruct shards trained in steps [4,11]
+========================================================================
+[PASS] audit_reconstructed :: steps 4..11: 6 shards, 2845 loss-tokens across 5 lanes
+[   4.124s] audit completed for steps 4..11: 6 shards reconstructed
+
+========================================================================
+== ALREADY-LEARNED PROBE  (re-expose a trained shard, watch loss drop)
+========================================================================
+[FAIL] already_learned_detected :: shard v5_general_web_shard_000: loss 7.288 is 113% of model avg 6.422 — already-learned (drops to 5.555 on re-exposure)
+
+========================================================================
+== THROUGHPUT & PACKING EFFICIENCY
+========================================================================
+[   4.139s] performance measured: 30225.4 useful loss-tokens/sec, packing_utilisation=0.746
+[PASS] throughput_measured :: 30225.4 useful loss-tokens/sec; packing_util=0.746; OPUS accept=0.3174
+
+========================================================================
+== SELF-TESTS  (independent invariant re-checks)
+========================================================================
+
+========================================================================
+== REPLAY interval [19,22]  (must reproduce identical hashes)
+========================================================================
+[   4.143s] restored checkpoint step 16; fast-forwarding 16..18 (no record)
+[PASS] replay_hash_matched :: steps 19..22: batch hashes AND token spans identical to original
+[   4.180s] historical stream replayed for steps 19..22 (hashes matched)
+[PASS] tests_passed :: second replay interval + tokenizer determinism re-verified
+
+========================================================================
+== EVIDENCE BUNDLE
+========================================================================
+[PASS] demo_completed :: full path executed end to end
+[PASS] evidence_generated :: evidence.json / evidence.md / evidence.html generated from the run
+
+========================================================================
+== SUMMARY
+========================================================================
+[   6.548s] PASS markers (26): attention_no_cross_doc, audit_reconstructed, checkpoint_saved, consumption_recorded, demo_completed, eval_shard_blocked, evidence_generated, fork_diverged, learning_linked_to_source, loss_mask_response_only, manifests_validated, manifests_written, mixture_compiled, no_canary_in_loss_batches, opus_override_fired, opus_trail_recorded, position_ids_reset, protected_floor_respected, replay_hash_matched, resume_next_batch_matched, resume_no_skip_no_repeat, shard_immutable_hash, tests_passed, throughput_measured, tokenizer_hash_changes, tokenizer_hash_verified
+[   6.548s] FAIL markers (1): already_learned_detected
+[   6.548s] status: 26 checks passed, 1 failed (scoring left to the evaluator)
+[   6.548s] artifacts written under ./submission_artifacts/

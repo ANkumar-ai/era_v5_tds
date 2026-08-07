@@ -1,0 +1,26 @@
+{
+  "colour_breakdown_pct": {
+    "amber": 20.5,
+    "gray": 62.9,
+    "green": 12.3,
+    "red": 4.3
+  },
+  "gpu_idle_loader_wait_fraction": 0.6292,
+  "opus": {
+    "accept_rate": 0.3174,
+    "candidates": 605,
+    "defer_rate": 0.0248,
+    "reject_rate": 0.6579
+  },
+  "packing_utilisation": 0.746,
+  "raw_tokens_per_sec": 81764.3,
+  "tokens": {
+    "accepted_real": 9167,
+    "amber_opus_rejected_deferred": 14825,
+    "green_useful_loss_bearing": 8869,
+    "raw_examined": 23992,
+    "red_padding_waste": 3121
+  },
+  "useful_loss_tokens_per_sec": 30225.4,
+  "wall_seconds": 0.2934
+}

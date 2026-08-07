@@ -1,0 +1,20 @@
+{
+  "capability_lane": "eval_holdout",
+  "cleaning_pipeline_hash": "clean_6d36455b6e1b",
+  "contains_canary": true,
+  "content_hash": "sha256_f6b08b3661b35314",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "eval_mmlu_000",
+    "eval_canary_000"
+  ],
+  "eval_overlap_status": "test_material",
+  "license_tier": "safe",
+  "manifest_hash": "mf_726a755177d5e093",
+  "never_train": true,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_eval_holdout_shard_000",
+  "token_count": 26,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

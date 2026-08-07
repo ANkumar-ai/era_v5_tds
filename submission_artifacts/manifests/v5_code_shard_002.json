@@ -1,0 +1,19 @@
+{
+  "capability_lane": "code",
+  "cleaning_pipeline_hash": "clean_89ee71cb0e4b",
+  "contains_canary": false,
+  "content_hash": "sha256_8ae814f3908599ad",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "code_002"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_b772f76aa6869ab0",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_code_shard_002",
+  "token_count": 15,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

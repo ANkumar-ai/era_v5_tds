@@ -1,0 +1,10 @@
+{
+  "special_tokens": {
+    "<BOS>": 3,
+    "<EOS>": 1,
+    "<PAD>": 0,
+    "<UNK>": 2
+  },
+  "tokenizer_hash": "tok_f17abb75fa3d",
+  "vocab_size": 40000
+}

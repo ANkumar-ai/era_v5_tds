@@ -1,0 +1,20 @@
+{
+  "capability_lane": "math_science",
+  "cleaning_pipeline_hash": "clean_6979b18ba12e",
+  "contains_canary": false,
+  "content_hash": "sha256_c5ce19cdc12e4669",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "math_000",
+    "math_001"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_ae76710bc08e62a3",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_math_science_shard_000",
+  "token_count": 35,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

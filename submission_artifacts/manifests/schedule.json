@@ -1,0 +1,45 @@
+{
+  "stages": [
+    {
+      "mixture": {
+        "agentic": 0.06,
+        "code": 0.22,
+        "general_web": 0.34,
+        "indic": 0.12,
+        "math_science": 0.14,
+        "reasoning": 0.12
+      },
+      "name": "foundation",
+      "protected_floors": {
+        "agentic": 0.03,
+        "indic": 0.08,
+        "reasoning": 0.05
+      },
+      "sequence_length": 64,
+      "token_end": 600,
+      "token_start": 0,
+      "warmup_tokens": 32
+    },
+    {
+      "mixture": {
+        "agentic": 0.06,
+        "code": 0.2,
+        "general_web": 0.24,
+        "indic": 0.12,
+        "math_science": 0.16,
+        "reasoning": 0.22
+      },
+      "name": "reasoning-heavy-midtrain",
+      "protected_floors": {
+        "agentic": 0.03,
+        "indic": 0.08,
+        "reasoning": 0.1
+      },
+      "sequence_length": 64,
+      "token_end": 1200,
+      "token_start": 600,
+      "warmup_tokens": 0
+    }
+  ],
+  "warnings": []
+}

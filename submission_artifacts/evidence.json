@@ -1,0 +1,185 @@
+{
+  "artifacts": {
+    "checkpoints": "checkpoints/",
+    "consumption": "ledgers/consumption.jsonl",
+    "learning": "ledgers/learning.jsonl",
+    "manifests": "manifests/",
+    "opus": "ledgers/opus.jsonl",
+    "performance": "performance.json",
+    "run_log": "run.log"
+  },
+  "fail_markers": [
+    "already_learned_detected"
+  ],
+  "key_numbers": {
+    "cold_start_loss": 10.5966,
+    "eval_shards_blocked": 1,
+    "final_batch_loss": 4.34,
+    "indic_rows": 10000,
+    "opus_accept_rate": 0.3174,
+    "packing_utilisation": 0.746,
+    "shards": 113,
+    "steps": 24,
+    "useful_loss_tokens_per_sec": 30225.4
+  },
+  "limits": [
+    "Indic lane = real Sangraha verified/tel (10000 rows profiled). Other lanes are small synthetic stubs so the mixture / OPUS / floor machinery has multiple lanes; the Telugu lane is the star.",
+    "Toy training scale by design: the executable trains a bounded slice, not ~128M-token shards. The architecture and its invariants are the deliverable.",
+    "The 'model' is a Laplace-smoothed bigram LM \u2014 it learns genuinely yet has zero randomness, so replay is bit-identical. Not a transformer; loss magnitudes are illustrative, the mechanism (incl. ln(V) cold start) is real.",
+    "Throughput wall-clock (tokens/sec) is host-dependent; the token accounting behind it is fully reconstructable from the ledgers and byte-identical across runs."
+  ],
+  "note": "Statuses are produced by the run from emitted PASS/FAIL markers. Point scoring is left to the evaluator; no self-assigned score.",
+  "pass_markers": [
+    "attention_no_cross_doc",
+    "audit_reconstructed",
+    "checkpoint_saved",
+    "consumption_recorded",
+    "demo_completed",
+    "eval_shard_blocked",
+    "evidence_generated",
+    "fork_diverged",
+    "learning_linked_to_source",
+    "loss_mask_response_only",
+    "manifests_validated",
+    "manifests_written",
+    "mixture_compiled",
+    "no_canary_in_loss_batches",
+    "opus_override_fired",
+    "opus_trail_recorded",
+    "position_ids_reset",
+    "protected_floor_respected",
+    "replay_hash_matched",
+    "resume_next_batch_matched",
+    "resume_no_skip_no_repeat",
+    "shard_immutable_hash",
+    "tests_passed",
+    "throughput_measured",
+    "tokenizer_hash_changes",
+    "tokenizer_hash_verified"
+  ],
+  "requirements": [
+    {
+      "detail": "Frozen hash reproduces; changes iff vocab changes",
+      "evidence": "manifests/tokenizer.json",
+      "markers": [
+        "tokenizer_hash_verified",
+        "tokenizer_hash_changes"
+      ],
+      "requirement": "Tokenizer integrity",
+      "result": "PASS"
+    },
+    {
+      "detail": "Editing a shard yields a new content hash + lineage; manifests revalidated",
+      "evidence": "manifests/",
+      "markers": [
+        "shard_immutable_hash",
+        "manifests_validated"
+      ],
+      "requirement": "Shard immutability",
+      "result": "PASS"
+    },
+    {
+      "detail": "never_train + canary shards blocked from loss-bearing batches",
+      "evidence": "run.log",
+      "markers": [
+        "eval_shard_blocked",
+        "no_canary_in_loss_batches"
+      ],
+      "requirement": "Evaluation firewall",
+      "result": "PASS"
+    },
+    {
+      "detail": "No cross-doc attention; response-only loss; position reset",
+      "evidence": "run.log",
+      "markers": [
+        "attention_no_cross_doc",
+        "loss_mask_response_only",
+        "position_ids_reset"
+      ],
+      "requirement": "Packing correctness",
+      "result": "PASS"
+    },
+    {
+      "detail": "Planned mixture vs realized lane shares; scarce lanes held above floor",
+      "evidence": "manifests/schedule.json + ledgers/consumption.jsonl",
+      "markers": [
+        "mixture_compiled",
+        "protected_floor_respected"
+      ],
+      "requirement": "Mixture compliance",
+      "result": "PASS"
+    },
+    {
+      "detail": "accept/reject/defer + protected-floor override recorded",
+      "evidence": "ledgers/opus.jsonl",
+      "markers": [
+        "opus_trail_recorded",
+        "opus_override_fired"
+      ],
+      "requirement": "OPUS audit trail",
+      "result": "PASS"
+    },
+    {
+      "detail": "Per-shard loss linked to source; already-learned flagged",
+      "evidence": "ledgers/learning.jsonl",
+      "markers": [
+        "learning_linked_to_source",
+        "already_learned_detected"
+      ],
+      "requirement": "Learning trace",
+      "result": "FAIL"
+    },
+    {
+      "detail": "Next batch after resume is exact; no skip/repeat",
+      "evidence": "ledgers/consumption.jsonl",
+      "markers": [
+        "resume_next_batch_matched",
+        "resume_no_skip_no_repeat"
+      ],
+      "requirement": "Crash recovery",
+      "result": "PASS"
+    },
+    {
+      "detail": "Replayed interval reproduces identical hashes + spans",
+      "evidence": "ledgers/consumption.jsonl",
+      "markers": [
+        "replay_hash_matched"
+      ],
+      "requirement": "Replay",
+      "result": "PASS"
+    },
+    {
+      "detail": "Branch from earlier checkpoint diverges w/ lineage",
+      "evidence": "checkpoints/fork_lineage.json",
+      "markers": [
+        "fork_diverged"
+      ],
+      "requirement": "Fork",
+      "result": "PASS"
+    },
+    {
+      "detail": "Shards for a step range reconstructed",
+      "evidence": "ledgers/audit_report.json",
+      "markers": [
+        "audit_reconstructed"
+      ],
+      "requirement": "Audit",
+      "result": "PASS"
+    },
+    {
+      "detail": "Useful loss-bearing tokens/sec measured",
+      "evidence": "performance.json",
+      "markers": [
+        "throughput_measured"
+      ],
+      "requirement": "Throughput",
+      "result": "PASS"
+    }
+  ],
+  "schema": "era-v5-tds-evidence-1.1",
+  "summary": {
+    "checks_failed": 1,
+    "checks_passed": 26,
+    "checks_total": 27
+  }
+}

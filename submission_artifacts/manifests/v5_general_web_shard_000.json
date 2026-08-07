@@ -1,0 +1,25 @@
+{
+  "capability_lane": "general_web",
+  "cleaning_pipeline_hash": "clean_16edca69de32",
+  "contains_canary": false,
+  "content_hash": "sha256_68ea138c645f6c6e",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "web_000",
+    "web_001",
+    "web_002",
+    "web_003",
+    "web_004",
+    "web_005",
+    "web_restricted_000"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "restricted",
+  "manifest_hash": "mf_5ba019598b92acbd",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_general_web_shard_000",
+  "token_count": 93,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

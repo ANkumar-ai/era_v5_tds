@@ -1,0 +1,24 @@
+{
+  "branch_id": "main",
+  "cursors": {},
+  "ledger_offsets": {
+    "consumption": 0,
+    "learning": 0,
+    "opus": 0
+  },
+  "lr": 0.033333,
+  "model_state": {
+    "alpha": 0.1,
+    "counts": [],
+    "loss_n": 0,
+    "loss_sum": 0.0,
+    "tokens_seen": 0,
+    "totals": [],
+    "vocab_size": 40000
+  },
+  "parent_checkpoint": null,
+  "realized_tokens": {},
+  "seed": 20250804,
+  "step": 0,
+  "tokens_seen": 0
+}

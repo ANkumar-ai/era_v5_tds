@@ -1,0 +1,29 @@
+{
+  "capability_lane": "indic",
+  "cleaning_pipeline_hash": "clean_ae15613d7141",
+  "contains_canary": false,
+  "content_hash": "sha256_7aa23cd5b5c0f617",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "27328f89bd579cb3cf3b3b773b51e819",
+    "699703715233597af6c65e4de7aa28f60fffe18677fa9fe3bf54dd9dc935d186",
+    "00ff25937eded5dfdce8d7ffc234526bc022402c",
+    "d07f1eb8128bf3bd1161bb0d51c2a2b9",
+    "05dea535fc7bde4edd48f7e19e92a220e7e3ec03e8eb10cacde2ff8b4e6ebd22",
+    "b2aaa6867dfc990ebd10748df8089f2018ca447c",
+    "6a5c7351dfbb1e63461ee983a6d6f8b8bd4b904789a216f9cbc30a34913cdcb6",
+    "9061a416cd02bc1e9bb3d5cd6d255b7d2d09e36d",
+    "ba5e65e95511e7369f8a7f13a6b7016b472d87d5",
+    "bd28e25b8b15121d32777e83cd28ce4b3bec79c4",
+    "11a9aaf94ae5a85b1cd75f139bea57f6c6a49106"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_44eaa2f2ad4fbef4",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_indic_shard_064",
+  "token_count": 4233,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}

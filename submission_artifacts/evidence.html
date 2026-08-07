@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ERA V5 · Training Data Execution System — Evidence</title>
+<style>
+:root{--ink:#12141b;--ink2:#181b24;--ink3:#20242f;--rule:#2b303d;--parch:#e9e3d6;
+--dim:#b0aa9c;--muted:#7c7e8e;--tur:#e0a126;--turd:#8a6518;--mad:#c0524a;
+--ver:#5a9d95;--lil:#8f8bc4;--mono:"IBM Plex Mono",ui-monospace,monospace;
+--body:system-ui,-apple-system,sans-serif;--disp:Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--parch);
+font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:960px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.hero{padding:clamp(34px,6vw,64px) 0 24px}
+.eye{font-family:var(--mono);font-size:10.5px;letter-spacing:.17em;text-transform:uppercase;
+color:var(--muted);margin:0}
+h1{font-family:var(--disp);font-weight:600;font-size:clamp(1.9rem,5vw,3rem);line-height:1.04;
+margin:.2em 0 .3em;letter-spacing:-.02em}h1 em{color:var(--tur);font-style:italic}
+.lede{color:var(--dim);max-width:64ch}
+.band{padding:clamp(26px,4vw,44px) 0;border-top:1px solid var(--rule)}
+h2{font-family:var(--disp);font-weight:600;font-size:1.4rem;margin:0 0 1em;letter-spacing:-.01em}
+.score{display:flex;align-items:baseline;gap:14px;font-family:var(--mono)}
+.score b{font-size:clamp(2.4rem,6vw,3.4rem);color:var(--tur);letter-spacing:-.03em}
+.score span{color:var(--muted);font-size:12px}
+.kns{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-top:18px}
+.kn{background:var(--ink2);padding:14px 16px}
+.kn b{display:block;font-family:var(--mono);font-size:1.25rem;color:var(--tur)}
+.kn span{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+text-transform:uppercase;color:var(--muted);margin-top:5px}
+.flow{height:34px;display:flex;border:1px solid var(--rule);overflow:hidden;margin:6px 0 10px}
+.flow i{height:100%}.g{background:linear-gradient(90deg,var(--turd),var(--tur))}
+.a{background:repeating-linear-gradient(-45deg,var(--tur) 0 2px,rgba(224,161,38,.3) 2px 6px)}
+.r{background:repeating-linear-gradient(-45deg,var(--mad) 0 2px,rgba(192,82,74,.3) 2px 6px)}
+.gr{background:#3a3f4c}
+.key{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+.key i{display:inline-block;width:16px;height:8px;margin-right:5px;vertical-align:middle}
+table{border-collapse:collapse;width:100%;font-size:.86rem}
+th,td{padding:8px 11px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+color:var(--muted);background:var(--ink3)}
+td.res{font-family:var(--mono);font-weight:600}tr.ok td.res{color:var(--ver)}
+tr.no td.res{color:var(--mad)}td code{font-family:var(--mono);font-size:.82em;color:var(--tur)}
+td.dt{color:var(--dim);font-size:.82rem}td.n{font-family:var(--mono);text-align:right}
+td.bar{width:120px}td.bar i{display:block;height:8px;background:var(--tur)}
+svg{width:100%;height:52px;border:1px solid var(--rule);background:var(--ink2)}
+svg polyline{fill:none;stroke:var(--tur);stroke-width:1.4;vector-effect:non-scaling-stroke}
+.lim{list-style:none;padding:0;margin:0}.lim li{padding:9px 0 9px 20px;position:relative;
+border-bottom:1px solid var(--rule);color:var(--dim);font-size:.87rem}
+.lim li::before{content:"△";position:absolute;left:0;top:10px;color:var(--mad);font-size:.7rem}
+.flow2{display:flex;align-items:stretch;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pstage{background:var(--ink2);border:1px solid var(--rule);padding:12px 15px;min-width:104px}
+.pstage b{display:block;font-family:var(--mono);font-size:1.15rem;color:var(--tur)}
+.pstage span{display:block;font-size:.82rem;color:var(--parch);margin-top:3px}
+.pstage em{font-family:var(--mono);font-size:8.5px;color:var(--muted);font-style:normal;
+letter-spacing:.09em;text-transform:uppercase}
+.arrow{align-self:center;color:var(--turd);font-family:var(--mono);font-size:1.1rem}
+footer{border-top:1px solid var(--rule);padding:22px 0 40px;font-family:var(--mono);
+font-size:10.5px;color:var(--muted)}
+</style></head><body>
+<header class="hero wrap">
+<p class="eye">ERA V5 · Session 6 · Training Data Execution System</p>
+<h1>What the model ate, why, <em>and how to reconstruct it</em></h1>
+<p class="lede">A small-but-complete, fully deterministic data system: immutable tokenized
+shards, a compiled mixture schedule, OPUS selection over protected floors, a two-way
+consumption/learning ledger, and crash-exact resume, replay and fork. Every number below is
+recomputed from the generated ledgers — nothing is hardcoded.</p>
+<div class="score" style="margin-top:22px"><b>26/27</b><span>checks passed · 1 failed<br>statuses from the run — scoring left to the evaluator</span></div>
+<div class="kns"><div class="kn"><b>10000</b><span>indic_rows</span></div><div class="kn"><b>113</b><span>shards</span></div><div class="kn"><b>1</b><span>eval_shards_blocked</span></div><div class="kn"><b>24</b><span>steps</span></div><div class="kn"><b>10.5966</b><span>cold_start_loss</span></div><div class="kn"><b>4.34</b><span>final_batch_loss</span></div><div class="kn"><b>30225.4</b><span>useful_loss_tokens_per_sec</span></div><div class="kn"><b>0.746</b><span>packing_utilisation</span></div><div class="kn"><b>0.3174</b><span>opus_accept_rate</span></div></div>
+</header>
+
+<section class="band wrap"><h2>Data &amp; execution pipeline</h2>
+<p style="color:var(--dim)">Indic-lane source: <b style="color:var(--tur)">ai4bharat/sangraha :: verified/tel</b> &middot; 10,000 rows &middot; 2,543,683 words &middot; vocab 40,000 &middot; fertility 1.175 tok/word</p><p style="font-family:var(--mono);font-size:11.5px;color:var(--muted)">type distribution: web 8820 &middot; pdf 1169 &middot; speech 11</p>
+<div class="flow2"><div class="pstage"><b>1,520</b><span>documents</span><em>docs</em></div><span class="arrow">&rarr;</span><div class="pstage"><b>112</b><span>admitted</span><em>shards</em></div><span class="arrow">&rarr;</span><div class="pstage"><b>7,079</b><span>packed</span><em>sequences</em></div><span class="arrow">&rarr;</span><div class="pstage"><b>24</b><span>batches</span><em>steps</em></div><span class="arrow">&rarr;</span><div class="pstage"><b>8,869</b><span>trained</span><em>loss-tokens</em></div></div>
+<p style="color:var(--muted);font-size:.82rem;margin-top:12px">documents flow left&rarr;right:
+tokenized into immutable shards, packed into fixed-length sequences, scheduled into
+batches by the mixture, and trained — every hop recorded in the ledgers.</p></section>
+
+<section class="band wrap"><h2>Throughput — the token-flow signature</h2>
+<div class="flow">
+<i class="g" style="width:12.3%"></i><i class="a" style="width:20.5%"></i>
+<i class="r" style="width:4.3%"></i><i class="gr" style="width:62.9%"></i></div>
+<div class="key">
+<span><i class="g"></i>green · useful loss-bearing 12.3%</span>
+<span><i class="a"></i>amber · OPUS rejected/deferred 20.5%</span>
+<span><i class="r"></i>red · padding waste 4.3%</span>
+<span><i class="gr"></i>gray · loader wait 62.9%</span></div>
+<p style="color:var(--dim);margin-top:12px">Useful loss-bearing throughput
+<b style="color:var(--tur)">30225.4</b> tokens/sec · packing utilisation
+<b style="color:var(--tur)">0.746</b>.</p></section>
+
+<section class="band wrap"><h2>Loss curve — cold-start ln(V) → trained</h2>
+<svg viewBox="0 0 100 40" preserveAspectRatio="none"><polyline points="0.0,4.0 4.3,21.9 8.7,15.8 13.0,19.7 17.4,28.9 21.7,20.8 26.1,27.3 30.4,22.0 34.8,14.6 39.1,32.8 43.5,26.9 47.8,27.2 52.2,30.7 56.5,35.6 60.9,32.3 65.2,10.3 69.6,29.6 73.9,24.4 78.3,31.3 82.6,12.9 87.0,30.7 91.3,31.3 95.7,40.0 100.0,39.0"/></svg>
+<p style="color:var(--dim);margin-top:10px;font-family:var(--mono);font-size:12px">
+starts at ln(V) = <b style="color:var(--tur)">10.5966</b> (a 1/V guess), ends at batch loss
+<b style="color:var(--tur)">4.34</b> — the model genuinely learned, so the learning
+ledger's per-shard loss is real.</p></section>
+
+<section class="band wrap"><h2>Requirements</h2>
+<table><thead><tr><th>Requirement</th><th>Result</th><th>Evidence</th><th>Detail</th></tr></thead>
+<tbody><tr class="ok"><td>Tokenizer integrity</td><td class="res">PASS</td><td><code>manifests/tokenizer.json</code></td><td class="dt">Frozen hash reproduces; changes iff vocab changes</td></tr><tr class="ok"><td>Shard immutability</td><td class="res">PASS</td><td><code>manifests/</code></td><td class="dt">Editing a shard yields a new content hash + lineage; manifests revalidated</td></tr><tr class="ok"><td>Evaluation firewall</td><td class="res">PASS</td><td><code>run.log</code></td><td class="dt">never_train + canary shards blocked from loss-bearing batches</td></tr><tr class="ok"><td>Packing correctness</td><td class="res">PASS</td><td><code>run.log</code></td><td class="dt">No cross-doc attention; response-only loss; position reset</td></tr><tr class="ok"><td>Mixture compliance</td><td class="res">PASS</td><td><code>manifests/schedule.json + ledgers/consumption.jsonl</code></td><td class="dt">Planned mixture vs realized lane shares; scarce lanes held above floor</td></tr><tr class="ok"><td>OPUS audit trail</td><td class="res">PASS</td><td><code>ledgers/opus.jsonl</code></td><td class="dt">accept/reject/defer + protected-floor override recorded</td></tr><tr class="no"><td>Learning trace</td><td class="res">FAIL</td><td><code>ledgers/learning.jsonl</code></td><td class="dt">Per-shard loss linked to source; already-learned flagged</td></tr><tr class="ok"><td>Crash recovery</td><td class="res">PASS</td><td><code>ledgers/consumption.jsonl</code></td><td class="dt">Next batch after resume is exact; no skip/repeat</td></tr><tr class="ok"><td>Replay</td><td class="res">PASS</td><td><code>ledgers/consumption.jsonl</code></td><td class="dt">Replayed interval reproduces identical hashes + spans</td></tr><tr class="ok"><td>Fork</td><td class="res">PASS</td><td><code>checkpoints/fork_lineage.json</code></td><td class="dt">Branch from earlier checkpoint diverges w/ lineage</td></tr><tr class="ok"><td>Audit</td><td class="res">PASS</td><td><code>ledgers/audit_report.json</code></td><td class="dt">Shards for a step range reconstructed</td></tr><tr class="ok"><td>Throughput</td><td class="res">PASS</td><td><code>performance.json</code></td><td class="dt">Useful loss-bearing tokens/sec measured</td></tr></tbody></table></section>
+
+<section class="band wrap"><h2>Limits &amp; honest readings</h2>
+<ul class="lim"><li>Indic lane = real Sangraha verified/tel (10000 rows profiled). Other lanes are small synthetic stubs so the mixture / OPUS / floor machinery has multiple lanes; the Telugu lane is the star.</li><li>Toy training scale by design: the executable trains a bounded slice, not ~128M-token shards. The architecture and its invariants are the deliverable.</li><li>The 'model' is a Laplace-smoothed bigram LM — it learns genuinely yet has zero randomness, so replay is bit-identical. Not a transformer; loss magnitudes are illustrative, the mechanism (incl. ln(V) cold start) is real.</li><li>Throughput wall-clock (tokens/sec) is host-dependent; the token accounting behind it is fully reconstructable from the ledgers and byte-identical across runs.</li></ul></section>
+
+<footer class="wrap">Generated by the implementation from run.log + the ledgers. This is a
+proof-of-concept at toy scale; the architecture, not the scale, is the deliverable.</footer>
+</body></html>

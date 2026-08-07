@@ -1,0 +1,7 @@
+{
+  "branch": "fork-reasoning",
+  "changed": "reasoning share boosted",
+  "diverged": true,
+  "divergence_step": 8,
+  "parent_checkpoint": "ckpt_main_step000008.json"
+}

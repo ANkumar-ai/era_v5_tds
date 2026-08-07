@@ -1,0 +1,21 @@
+{
+  "capability_lane": "reasoning",
+  "cleaning_pipeline_hash": "clean_599187670ca1",
+  "contains_canary": false,
+  "content_hash": "sha256_1d046ae18a0598ee",
+  "dedup_status": "passed",
+  "doc_ids": [
+    "reason_000",
+    "reason_001",
+    "reason_002"
+  ],
+  "eval_overlap_status": "clear",
+  "license_tier": "safe",
+  "manifest_hash": "mf_b84099afcb22169d",
+  "never_train": false,
+  "parent_manifest_ids": [],
+  "pii_screen_status": "screened",
+  "shard_id": "v5_reasoning_shard_000",
+  "token_count": 47,
+  "tokenizer_hash": "tok_f17abb75fa3d"
+}
