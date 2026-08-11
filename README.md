@@ -1,4 +1,4 @@
-# ERA V5 · Session 6 — Training Data Execution System (POC)
+# Training Data Execution System (POC) for LLM's
 
 A small‑but‑complete, **fully deterministic** data system that turns the Session 5
 recipe (mixtures, curriculum, protected floors, OPUS) into the actual, inspectable
