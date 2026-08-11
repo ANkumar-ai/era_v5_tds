@@ -1,4 +1,4 @@
-# Training Data Execution System (POC) for LLM's
+# Training Data Execution System (POC) for LLMs
 
 A small‑but‑complete, **fully deterministic** data system that turns the Session 5
 recipe (mixtures, curriculum, protected floors, OPUS) into the actual, inspectable
